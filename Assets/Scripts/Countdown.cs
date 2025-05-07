@@ -73,4 +73,9 @@ public class Countdown : MonoBehaviour
         int currentspriteIndex = sprites.Count - second;
         spriteImage.sprite = sprites[currentspriteIndex];
     }
+
+    public void StopSlider()
+    {
+        _timerStarted = false;
+    }
 }

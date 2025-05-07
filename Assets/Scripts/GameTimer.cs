@@ -30,5 +30,9 @@ public class GameTimer : MonoBehaviour
                 countdownText.text = _lastDisplayedSecond.ToString();
             }
         }
+        else
+        {
+            GameManager.Instance.GameTimerReachedZero();
+        }
     }
 }
