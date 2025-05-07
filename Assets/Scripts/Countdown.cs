@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,12 +12,17 @@ public class Countdown : MonoBehaviour
     
     [Header("Slider")]
     [SerializeField] Slider slider;
+    
+    [Header("Sprites")]
+    [SerializeField] Image spriteImage;
+    [SerializeField] List<Sprite> sprites;
 
     bool _timerStarted;
     int _lastWholeSecond;
     
     void Start()
     {
+        timer = sprites.Count;
         timeRemaining = timer;
         
         slider.maxValue = timeRemaining;
@@ -47,9 +53,10 @@ public class Countdown : MonoBehaviour
     {
         int currentWholeSecond = Mathf.CeilToInt(timeRemaining);
         
-        if (currentWholeSecond != _lastWholeSecond)
+        if (currentWholeSecond != _lastWholeSecond && currentWholeSecond > 0)
         {
             _lastWholeSecond = currentWholeSecond;
+            UpdateSprite(_lastWholeSecond);
         }
     }
 
@@ -58,5 +65,12 @@ public class Countdown : MonoBehaviour
         if (!_timerStarted) return;
         
         timeRemaining = Mathf.Min(timeRemaining + 1f, slider.maxValue);
+    }
+
+    void UpdateSprite(int second)
+    {
+        Debug.Log(second);
+        int currentspriteIndex = sprites.Count - second;
+        spriteImage.sprite = sprites[currentspriteIndex];
     }
 }
