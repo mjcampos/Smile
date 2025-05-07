@@ -963,7 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 1302460279}
-  totalTime: 5
+  totalTime: 15
 --- !u!114 &1510980798
 MonoBehaviour:
   m_ObjectHideFlags: 0

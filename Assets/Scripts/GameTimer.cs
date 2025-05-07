@@ -9,9 +9,11 @@ public class GameTimer : MonoBehaviour
     
     float _timeRemaining;
     int _lastDisplayedSecond;
+    bool _gameIsActive;
     
     void Start()
     {
+        _gameIsActive = true;
         _timeRemaining = totalTime;
         _lastDisplayedSecond = Mathf.CeilToInt(_timeRemaining);
         countdownText.text = _lastDisplayedSecond.ToString();
@@ -19,6 +21,8 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
+        if (!_gameIsActive) return;
+        
         if (_timeRemaining > 0)
         {
             _timeRemaining -= Time.deltaTime;
@@ -35,4 +39,6 @@ public class GameTimer : MonoBehaviour
             GameManager.Instance.GameTimerReachedZero();
         }
     }
+    
+    public void StopTimer() => _gameIsActive = false;
 }

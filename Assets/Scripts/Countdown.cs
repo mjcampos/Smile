@@ -45,6 +45,7 @@ public class Countdown : MonoBehaviour
                 timeRemaining = 0f;
                 slider.value = timeRemaining;
                 _timerStarted = false;
+                GameManager.Instance.SliderReachedZero();
             }
         }
     }

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     
     Countdown _countdown;
+    GameTimer _gameTimer;
     
     void Awake()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _countdown = FindFirstObjectByType<Countdown>();
+        _gameTimer = FindFirstObjectByType<GameTimer>();
     }
 
     public void GameTimerReachedZero()
@@ -44,5 +46,21 @@ public class GameManager : MonoBehaviour
         
         // Step 3 - Display win text
         UIDisplay.Instance.DisplayWinText();
+    }
+
+    public void SliderReachedZero()
+    {
+        /*
+         * If this method is triggered then player has lost
+         * - No need freeze slider cause Countdown.cs already does that
+         * 1. Stop countdown timer
+         * 2. Display lost text
+         */
+        
+        // Step 1
+        _gameTimer.StopTimer();
+        
+        // Step 2
+        UIDisplay.Instance.DisplayLoseText();
     }
 }
